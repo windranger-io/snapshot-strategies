@@ -1,8 +1,29 @@
 const { JsonRpcProvider } = require('@ethersproject/providers');
 const { getAddress } = require('@ethersproject/address');
 const snapshot = require('../').default;
-const networks = require('@snapshot-labs/snapshot.js/src/networks.json');
+const networks = loadNetworks();
 const addresses = require('./addresses.json');
+
+function loadNetworks() {
+  const networksFile =
+    process.env['npm_config_networks_file'] ||
+    process.argv
+      .find((arg) => arg.includes('--networks-file'))
+      ?.split('--networks-file')
+      ?.pop();
+
+  if( networksFile !== undefined){
+    //TODO remove log line
+    console.log('we have variable: ' +networksFile);
+
+    return require(networksFile);
+  }else {
+    //TODO remove log line
+    console.log('no custom networks file');
+
+    return require('@snapshot-labs/snapshot.js/src/networks.json');
+  }
+}
 
 const strategyArg =
   process.env['npm_config_strategy'] ||
@@ -22,6 +43,7 @@ const moreArg =
 
 const strategy = Object.keys(snapshot.strategies).find((s) => strategyArg == s);
 if (!strategy) throw 'Strategy not found';
+
 const example = require(`../src/strategies/${strategy}/examples.json`)[0];
 
 function callGetScores(example) {
