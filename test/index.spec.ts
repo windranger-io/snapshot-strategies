@@ -1,8 +1,8 @@
 const { JsonRpcProvider } = require('@ethersproject/providers');
 const { getAddress } = require('@ethersproject/address');
 const snapshot = require('../').default;
-const networks = loadNetworks();
 const addresses = require('./addresses.json');
+const networks = loadNetworks();
 
 function loadNetworks() {
   const networksFile =
@@ -12,16 +12,14 @@ function loadNetworks() {
       ?.split('--networks-file')
       ?.pop();
 
-  if( networksFile !== undefined){
-    //TODO remove log line
-    console.log('we have variable: ' +networksFile);
-
-    return require(networksFile);
-  }else {
-    //TODO remove log line
-    console.log('no custom networks file');
-
+  if( networksFile === undefined){
     return require('@snapshot-labs/snapshot.js/src/networks.json');
+  } else {
+    try{
+      return require(networksFile);
+    } catch(e) {
+      throw new Error('Cannot find networks file: '+networksFile);
+    }
   }
 }
 
