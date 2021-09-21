@@ -12,13 +12,13 @@ function loadNetworks() {
       ?.split('--networks-file')
       ?.pop();
 
-  if( networksFile === undefined){
+  if (networksFile === undefined) {
     return require('@snapshot-labs/snapshot.js/src/networks.json');
   } else {
-    try{
+    try {
       return require(networksFile);
-    } catch(e) {
-      throw new Error('Cannot find networks file: '+networksFile);
+    } catch (e) {
+      throw new Error('Cannot find networks file: ' + networksFile);
     }
   }
 }
