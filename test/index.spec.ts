@@ -2,26 +2,7 @@ const { JsonRpcProvider } = require('@ethersproject/providers');
 const { getAddress } = require('@ethersproject/address');
 const snapshot = require('../').default;
 const addresses = require('./addresses.json');
-const networks = loadNetworks();
-
-function loadNetworks() {
-  const networksFile =
-    process.env['npm_config_networks_file'] ||
-    process.argv
-      .find((arg) => arg.includes('--networks-file'))
-      ?.split('--networks-file')
-      ?.pop();
-
-  if (networksFile === undefined) {
-    return require('@snapshot-labs/snapshot.js/src/networks.json');
-  } else {
-    try {
-      return require(networksFile);
-    } catch (e) {
-      throw new Error('Cannot find networks file: ' + networksFile);
-    }
-  }
-}
+const networks = require('../src/utils/networks');
 
 const strategyArg =
   process.env['npm_config_strategy'] ||

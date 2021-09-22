@@ -2,12 +2,12 @@
   "1": {
     "key": "1",
     "name": "In Memory Ethereum Mainnet",
-    "chainId": 1,
+    "chainId": 3,
     "network": "homestead",
-    "multicall": "0x42ad527de7d4e9d9d011ac45b31d8551f8fe9821",
+    "multicall": "0x5fbdb2315678afecb367f032d93f642f64180aa3",
     "rpc": [
       {
-        "url": "http://127.0.0.1:8545/"
+        "url": "http://localhost:8545/"
       }
     ]
   }
