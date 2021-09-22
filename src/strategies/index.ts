@@ -9,6 +9,7 @@ import * as contractCall from './contract-call';
 import * as dextfVaults from './dextf-staked-in-vaults';
 import * as dfynFarms from './dfyn-staked-in-farms';
 import * as dfynVaults from './dfyn-staked-in-vaults';
+import * as vDfynVault from './balance-in-vdfyn-vault';
 import * as ensDomainsOwned from './ens-domains-owned';
 import * as ensReverseRecord from './ens-reverse-record';
 import * as erc20BalanceOf from './erc20-balance-of';
@@ -35,6 +36,8 @@ import * as faralandStaking from './faraland-staking';
 import * as flashstake from './flashstake';
 import * as pancake from './pancake';
 import * as synthetix from './synthetix';
+import * as synthetixQuadratic from './synthetix-quadratic';
+import * as synthetixNonQuadratic from './synthetix-non-quadratic';
 import * as ctoken from './ctoken';
 import * as cream from './cream';
 import * as esd from './esd';
@@ -146,6 +149,8 @@ import * as hasrock from './has-rock';
 import * as flexaCapacityStaking from './flexa-capacity-staking';
 import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
 import * as sunriseGamingStaking from './sunrisegaming-staking';
+import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof'
+import * as occStakeOf from './occ-stake-of'
 
 const strategies = {
   coordinape,
@@ -154,6 +159,7 @@ const strategies = {
   sunder,
   'balancer-smart-pool': balancerSmartPool,
   'balancer-erc20-internal-balance-of': balancerErc20InternalBalanceOf,
+  'balance-in-vdfyn-vault': vDfynVault,
   'erc20-received': erc20Received,
   'contract-call': contractCall,
   'dextf-staked-in-vaults': dextfVaults,
@@ -196,6 +202,8 @@ const strategies = {
   flashstake,
   pancake,
   synthetix,
+  'synthetix-quadratic': synthetixQuadratic,
+  'synthetix-non-quadratic': synthetixNonQuadratic,
   ctoken,
   cream,
   'staked-uniswap': stakedUniswap,
@@ -293,7 +301,9 @@ const strategies = {
   'has-rock': hasrock,
   'flexa-capacity-staking': flexaCapacityStaking,
   'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
-  'sunrisegaming-staking': sunriseGamingStaking
+  'sunrisegaming-staking': sunriseGamingStaking,
+  'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
+  'occ-stake-of': occStakeOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
